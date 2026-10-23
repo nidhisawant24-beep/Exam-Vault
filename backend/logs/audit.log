@@ -1,0 +1,85 @@
+[2026-10-13T18:23:18.118574Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP sent for 2FA step. Dev code: 645279
+[2026-10-13T18:23:18.157603Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=LOGIN_SUCCESS STATUS=SUCCESS DETAILS=Successful 2FA login for role: admin
+[2026-10-13T18:23:18.628627Z] IP=127.0.0.1 USER=faculty@examvault.edu ROLE=faculty ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP sent for 2FA step. Dev code: 253677
+[2026-10-13T18:23:18.656781Z] IP=127.0.0.1 USER=faculty@examvault.edu ROLE=faculty ACTION=LOGIN_SUCCESS STATUS=SUCCESS DETAILS=Successful 2FA login for role: faculty
+[2026-10-13T18:23:18.712691Z] IP=127.0.0.1 USER=faculty@examvault.edu ROLE=faculty ACTION=DOWNLOAD_BLOCKED_TIMELOCK STATUS=BLOCKED DETAILS=Unauthorized early download attempt for CS803. Exam starts at 2026-10-15T18:22:39.169285 UTC
+[2026-10-13T18:23:18.754176Z] IP=127.0.0.1 USER=faculty@examvault.edu ROLE=faculty ACTION=DECRYPT_BLOCKED_TIMELOCK STATUS=BLOCKED DETAILS=Premature decryption attempt blocked for CS803. Exam at 2026-10-15T18:22:39.169285
+[2026-10-13T18:23:18.951691Z] IP=127.0.0.1 USER=faculty@examvault.edu ROLE=faculty ACTION=PAPER_DECRYPTED_VERIFIED STATUS=SUCCESS DETAILS=Successful cryptographic verification & paper access for CS801
+[2026-10-13T18:23:19.062134Z] IP=127.0.0.1 USER=faculty@examvault.edu ROLE=faculty ACTION=TAMPER_SIGNATURE_INVALID STATUS=WARNING DETAILS=Digital Signature invalid for CS801
+[2026-10-13T19:30:14.955730Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP sent for 2FA step. Dev code: 613327
+[2026-10-13T19:30:41.806808Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=LOGIN_SUCCESS STATUS=SUCCESS DETAILS=Successful 2FA login for role: admin
+[2026-10-14T06:28:56.617077Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP sent for 2FA step. Dev code: 525635
+[2026-10-14T06:30:16.950891Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=LOGIN_SUCCESS STATUS=SUCCESS DETAILS=Successful 2FA login for role: admin
+[2026-10-14T07:47:19.345205Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=USER_LOGOUT STATUS=SUCCESS DETAILS=Session terminated by user
+[2026-10-14T07:54:26.934418Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=PAPER_UPLOADED STATUS=SUCCESS DETAILS=Paper: CS801 - Cryptography & Network Security. Hash: f591b689f8924508... Scheduled: 2026-10-14T23:00:00
+[2026-10-14T07:55:15.923638Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=USER_LOGOUT STATUS=SUCCESS DETAILS=Session terminated by user
+[2026-10-14T07:55:19.989326Z] IP=127.0.0.1 USER=faculty@examvault.edu ROLE=faculty ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP sent for 2FA step. Dev code: 549761
+[2026-10-14T07:55:40.420017Z] IP=127.0.0.1 USER=faculty@examvault.edu ROLE=faculty ACTION=LOGIN_SUCCESS STATUS=SUCCESS DETAILS=Successful 2FA login for role: faculty
+[2026-10-14T07:56:04.729192Z] IP=127.0.0.1 USER=faculty@examvault.edu ROLE=faculty ACTION=PAPER_DECRYPTED_VERIFIED STATUS=SUCCESS DETAILS=Successful cryptographic verification & paper access for CS801
+[2026-10-14T07:57:08.328331Z] IP=127.0.0.1 USER=faculty@examvault.edu ROLE=faculty ACTION=USER_LOGOUT STATUS=SUCCESS DETAILS=Session terminated by user
+[2026-10-14T08:03:57.485332Z] IP=127.0.0.1 USER=sawantnidhi677@gmail.com ROLE=unknown ACTION=LOGIN_FAILED_CREDENTIALS STATUS=FAILED DETAILS=Invalid password or user not found for sawantnidhi677@gmail.com
+[2026-10-14T08:04:26.729986Z] IP=127.0.0.1 USER=nidhi.sawant24@sakec.ac.in ROLE=unknown ACTION=LOGIN_FAILED_CREDENTIALS STATUS=FAILED DETAILS=Invalid password or user not found for nidhi.sawant24@sakec.ac.in
+[2026-10-14T08:08:53.989179Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP sent for 2FA step. Dev code: 407489
+[2026-10-14T08:09:18.220472Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP sent for 2FA step. Dev code: 546780
+[2026-10-14T08:09:24.392827Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=LOGIN_SUCCESS STATUS=SUCCESS DETAILS=Successful 2FA login for role: admin
+[2026-10-14T08:09:56.430283Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=PAPER_DOWNLOADED_ENCRYPTED STATUS=SUCCESS DETAILS=Downloaded encrypted package for CS801
+[2026-10-14T08:11:34.427030Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=PAPER_DOWNLOADED_ENCRYPTED STATUS=SUCCESS DETAILS=Downloaded encrypted package for CS801
+[2026-10-14T13:26:39.642607Z] IP=127.0.0.1 USER=UNKNOWN ROLE=UNKNOWN ACTION=USER_LOGOUT STATUS=SUCCESS DETAILS=Session terminated by user
+[2026-10-14T13:26:39.723311Z] IP=127.0.0.1 USER=UNKNOWN ROLE=UNKNOWN ACTION=USER_LOGOUT STATUS=SUCCESS DETAILS=Session terminated by user
+[2026-10-14T14:16:48.871118Z] IP=127.0.0.1 USER=testfaculty@examvault.edu ROLE=faculty ACTION=SELF_REGISTRATION_SUBMITTED STATUS=SUCCESS DETAILS=New registration request submitted by Dr. Test Faculty (Computer Engineering). Awaiting Admin Approval.
+[2026-10-14T14:16:49.025897Z] IP=127.0.0.1 USER=testfaculty@examvault.edu ROLE=faculty ACTION=LOGIN_BLOCKED_UNAPPROVED STATUS=BLOCKED DETAILS=User testfaculty@examvault.edu attempted login while registration is PENDING
+[2026-10-14T14:16:49.177315Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP dispatched. Email Sent: False, SMS Sent: False
+[2026-10-14T14:16:49.208076Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=LOGIN_SUCCESS STATUS=SUCCESS DETAILS=Successful 2FA login for role: admin
+[2026-10-14T14:16:49.634359Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=REGISTRATION_APPROVED STATUS=SUCCESS DETAILS=Admin approved registration for testfaculty@examvault.edu (Dr. Test Faculty) - PKI keys generated.
+[2026-10-14T14:16:49.829120Z] IP=127.0.0.1 USER=testfaculty@examvault.edu ROLE=faculty ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP dispatched. Email Sent: False, SMS Sent: False
+[2026-10-14T14:16:49.962837Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=PAPER_DECRYPTED_VERIFIED STATUS=SUCCESS DETAILS=Successful cryptographic verification & paper access for CS801
+[2026-10-14T14:18:34.236696Z] IP=127.0.0.1 USER=sawantnidhi677@gmail.com ROLE=faculty ACTION=SELF_REGISTRATION_SUBMITTED STATUS=SUCCESS DETAILS=New registration request submitted by Nidhi Sawant (Information Technology). Awaiting Admin Approval.
+[2026-10-14T14:18:48.625376Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP dispatched. Email Sent: False, SMS Sent: False
+[2026-10-14T14:18:59.594670Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=LOGIN_SUCCESS STATUS=SUCCESS DETAILS=Successful 2FA login for role: admin
+[2026-10-14T14:19:11.894087Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=REGISTRATION_APPROVED STATUS=SUCCESS DETAILS=Admin approved registration for sawantnidhi677@gmail.com (Nidhi Sawant) - PKI keys generated.
+[2026-10-14T14:19:20.020240Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=USER_LOGOUT STATUS=SUCCESS DETAILS=Session terminated by user
+[2026-10-14T14:19:23.809748Z] IP=127.0.0.1 USER=sawantnidhi677@gmail.com ROLE=faculty ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP dispatched. Email Sent: False, SMS Sent: False
+[2026-10-14T14:44:56.941141Z] IP=127.0.0.1 USER=testfaculty@examvault.edu ROLE=faculty ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP dispatched. Email Sent: False, SMS Sent: False
+[2026-10-14T14:45:11.423060Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP dispatched. Email Sent: False, SMS Sent: False
+[2026-10-14T14:47:24.241030Z] IP=127.0.0.1 USER=sawantnidhi677@gmail.com ROLE=faculty ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP dispatched. Email Sent: False, SMS Sent: False
+[2026-10-14T14:50:27.622769Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP dispatched. Email Sent: False, SMS Sent: False
+[2026-10-14T14:51:49.022894Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP dispatched. Email Sent: False, SMS Sent: False
+[2026-10-14T15:08:15.489344Z] IP=127.0.0.1 USER=sawantnidhi677@gmail.com ROLE=faculty ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP dispatched. Email Sent: False, SMS Sent: False
+[2026-10-14T15:09:28.029175Z] IP=127.0.0.1 USER=sawantnidhi677@gmail.com ROLE=faculty ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP dispatched. Email Sent: False, SMS Sent: False
+[2026-10-14T15:16:41.571441Z] IP=127.0.0.1 USER=sawantnidhi677@gmail.com ROLE=unknown ACTION=LOGIN_FAILED_CREDENTIALS STATUS=FAILED DETAILS=Invalid password or user not found for sawantnidhi677@gmail.com
+[2026-10-14T15:16:50.804756Z] IP=127.0.0.1 USER=sawantnidhi677@gmail.com ROLE=faculty ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP dispatched. Email Sent: False, SMS Sent: False
+[2026-10-14T15:22:51.039533Z] IP=127.0.0.1 USER=8104211805 ROLE=unknown ACTION=LOGIN_FAILED_CREDENTIALS STATUS=FAILED DETAILS=Invalid password or user not found for 8104211805
+[2026-10-14T15:23:10.905505Z] IP=127.0.0.1 USER=8104211805 ROLE=unknown ACTION=LOGIN_FAILED_CREDENTIALS STATUS=FAILED DETAILS=Invalid password or user not found for 8104211805
+[2026-10-14T15:23:44.605219Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP dispatched. Email Sent: False, SMS Sent: False
+[2026-10-14T15:34:28.317920Z] IP=127.0.0.1 USER=sawantnidhi677@gmail.com ROLE=faculty ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP dispatched. Email Sent: True, SMS Sent: False
+[2026-10-14T15:35:01.251981Z] IP=127.0.0.1 USER=sawantnidhi677@gmail.com ROLE=faculty ACTION=LOGIN_SUCCESS STATUS=SUCCESS DETAILS=Successful 2FA login for role: faculty
+[2026-10-14T16:50:36.526633Z] IP=127.0.0.1 USER=sawantnidhi677@gmail.com ROLE=faculty ACTION=USER_LOGOUT STATUS=SUCCESS DETAILS=Session terminated by user
+[2026-10-14T16:50:55.464707Z] IP=127.0.0.1 USER=sawantnidhi677@gmail.com ROLE=faculty ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP dispatched. Email Sent: True, SMS Sent: False
+[2026-10-22T09:53:03.364440Z] IP=127.0.0.1 USER=sawantnidhi677@gmail.com ROLE=faculty ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP dispatched. Email Sent: True, SMS Sent: False
+[2026-10-22T09:53:19.554181Z] IP=127.0.0.1 USER=sawantnidhi677@gmail.com ROLE=faculty ACTION=LOGIN_SUCCESS STATUS=SUCCESS DETAILS=Successful 2FA login for role: faculty
+[2026-10-22T09:54:15.557092Z] IP=127.0.0.1 USER=sawantnidhi677@gmail.com ROLE=faculty ACTION=PAPER_DECRYPTED_VERIFIED STATUS=SUCCESS DETAILS=Successful cryptographic verification & paper access for CS801
+[2026-10-22T09:54:42.190851Z] IP=127.0.0.1 USER=sawantnidhi677@gmail.com ROLE=faculty ACTION=USER_LOGOUT STATUS=SUCCESS DETAILS=Session terminated by user
+[2026-10-22T09:55:01.962614Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP dispatched. Email Sent: True, SMS Sent: False
+[2026-10-22T09:58:33.758994Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP dispatched. Email Sent: True, SMS Sent: False
+[2026-10-22T10:12:04.949470Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=ADMIN_DIRECT_LOGIN_SUCCESS STATUS=SUCCESS DETAILS=Direct password authentication for Administrator (OTP verification bypassed for Admin)
+[2026-10-22T10:12:30.637151Z] IP=127.0.0.1 USER=faculty@examvault.edu ROLE=faculty ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP dispatched. Email Sent: True, SMS Sent: False
+[2026-10-22T10:16:21.546405Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=ADMIN_DIRECT_LOGIN_SUCCESS STATUS=SUCCESS DETAILS=Direct password authentication for Administrator (OTP verification bypassed for Admin)
+[2026-10-22T10:16:37.724423Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=USER_LOGOUT STATUS=SUCCESS DETAILS=Session terminated by user
+[2026-10-22T10:46:26.916510Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=ADMIN_DIRECT_LOGIN_SUCCESS STATUS=SUCCESS DETAILS=Direct password authentication for Administrator (OTP verification bypassed for Admin)
+[2026-10-22T10:46:32.891608Z] IP=127.0.0.1 USER=faculty@examvault.edu ROLE=faculty ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP dispatched. Email Sent: True, SMS Sent: False
+[2026-10-22T10:48:08.110926Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=ADMIN_DIRECT_LOGIN_SUCCESS STATUS=SUCCESS DETAILS=Direct password authentication for Administrator (OTP verification bypassed for Admin)
+[2026-10-22T10:48:39.850532Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=USER_LOGOUT STATUS=SUCCESS DETAILS=Session terminated by user
+[2026-10-22T11:02:59.004128Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=ADMIN_DIRECT_LOGIN_SUCCESS STATUS=SUCCESS DETAILS=Direct password authentication for Administrator (OTP verification bypassed for Admin)
+[2026-10-22T11:06:12.349921Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=PAPER_UPLOADED STATUS=SUCCESS DETAILS=Paper: C5432 - Biology. Hash: 33c1d2c956e59e91... Scheduled: 2026-10-21T23:15:00
+[2026-10-22T11:06:39.367333Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=USER_LOGOUT STATUS=SUCCESS DETAILS=Session terminated by user
+[2026-10-22T11:06:51.777919Z] IP=127.0.0.1 USER=faculty@examvault.edu ROLE=faculty ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP dispatched. Email Sent: True, SMS Sent: False
+[2026-10-22T11:07:28.568698Z] IP=127.0.0.1 USER=sawantnidhi677@gmail.com ROLE=faculty ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP dispatched. Email Sent: True, SMS Sent: False
+[2026-10-22T11:07:40.611076Z] IP=127.0.0.1 USER=sawantnidhi677@gmail.com ROLE=faculty ACTION=LOGIN_SUCCESS STATUS=SUCCESS DETAILS=Successful 2FA login for role: faculty
+[2026-10-22T11:08:16.445017Z] IP=127.0.0.1 USER=sawantnidhi677@gmail.com ROLE=faculty ACTION=PAPER_DECRYPTED_VERIFIED STATUS=SUCCESS DETAILS=Successful cryptographic verification & paper access for C5432
+[2026-10-22T11:09:04.387090Z] IP=127.0.0.1 USER=sawantnidhi677@gmail.com ROLE=faculty ACTION=USER_LOGOUT STATUS=SUCCESS DETAILS=Session terminated by user
+[2026-10-22T11:09:11.010057Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=ADMIN_DIRECT_LOGIN_SUCCESS STATUS=SUCCESS DETAILS=Direct password authentication for Administrator (OTP verification bypassed for Admin)
+[2026-10-22T11:10:27.657474Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=PAPER_UPLOADED STATUS=SUCCESS DETAILS=Paper: BIO12 - Bio. Hash: 33c1d2c956e59e91... Scheduled: 2026-10-24T23:00:00
+[2026-10-22T11:10:33.519796Z] IP=127.0.0.1 USER=admin@examvault.edu ROLE=admin ACTION=USER_LOGOUT STATUS=SUCCESS DETAILS=Session terminated by user
+[2026-10-22T11:10:53.654091Z] IP=127.0.0.1 USER=sawantnidhi677@gmail.com ROLE=faculty ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP dispatched. Email Sent: True, SMS Sent: False
+[2026-10-22T11:11:06.374197Z] IP=127.0.0.1 USER=sawantnidhi677@gmail.com ROLE=faculty ACTION=LOGIN_SUCCESS STATUS=SUCCESS DETAILS=Successful 2FA login for role: faculty
+[2026-10-22T11:11:54.979616Z] IP=127.0.0.1 USER=sawantnidhi677@gmail.com ROLE=faculty ACTION=USER_LOGOUT STATUS=SUCCESS DETAILS=Session terminated by user
