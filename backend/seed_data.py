@@ -134,17 +134,30 @@ def seed_database():
             {
                 'name': 'Dr. Alan Turing',
                 'email': 'faculty@examvault.edu',
-                'department': 'Computer Engineering'
+                'department': 'Computer Engineering',
+                'password': 'Faculty@123',
+                'phone': None
             },
             {
-                'name': 'Dr. Claude Shannon',
+                'name': 'Prof. Claude Shannon',
                 'email': 'shannon@examvault.edu',
-                'department': 'Information Technology'
+                'department': 'Information Technology',
+                'password': 'Faculty@123',
+                'phone': None
             },
             {
                 'name': 'Dr. Ronald Rivest',
                 'email': 'rivest@examvault.edu',
-                'department': 'Cybersecurity'
+                'department': 'Cybersecurity',
+                'password': 'Faculty@123',
+                'phone': None
+            },
+            {
+                'name': 'Nidhi Sawant',
+                'email': 'sawantnidhi677@gmail.com',
+                'department': 'Computer Engineering',
+                'password': '12345678',
+                'phone': '8104211805'
             }
         ]
         
@@ -155,15 +168,25 @@ def seed_database():
                 fac = User(
                     name=item['name'],
                     email=item['email'],
+                    phone=item.get('phone'),
                     role='faculty',
                     department=item['department'],
                     rsa_public_key=pub_k.decode('utf-8'),
                     rsa_private_key=priv_k.decode('utf-8'),
+                    is_approved=True,
+                    approval_status='APPROVED',
                     is_active=True
                 )
-                fac.set_password('Faculty@123')
+                fac.set_password(item['password'])
                 db.session.add(fac)
-                print(f" -> Created Faculty: {item['email']} (Password: Faculty@123)")
+                print(f" -> Created Faculty: {item['email']} (Password: {item['password']})")
+            else:
+                fac.is_approved = True
+                fac.approval_status = 'APPROVED'
+                fac.is_active = True
+                if item.get('phone'):
+                    fac.phone = item['phone']
+                fac.set_password(item['password'])
                 
         db.session.commit()
         

@@ -83,3 +83,8 @@
 [2026-10-22T11:10:53.654091Z] IP=127.0.0.1 USER=sawantnidhi677@gmail.com ROLE=faculty ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP dispatched. Email Sent: True, SMS Sent: False
 [2026-10-22T11:11:06.374197Z] IP=127.0.0.1 USER=sawantnidhi677@gmail.com ROLE=faculty ACTION=LOGIN_SUCCESS STATUS=SUCCESS DETAILS=Successful 2FA login for role: faculty
 [2026-10-22T11:11:54.979616Z] IP=127.0.0.1 USER=sawantnidhi677@gmail.com ROLE=faculty ACTION=USER_LOGOUT STATUS=SUCCESS DETAILS=Session terminated by user
+[2026-10-23T12:56:51.320180Z] IP=127.0.0.1 USER=faculty@examvault.edu ROLE=faculty ACTION=DIRECT_LOGIN_SUCCESS STATUS=SUCCESS DETAILS=Direct password login for faculty (faculty@examvault.edu) - OTP bypassed
+[2026-10-23T12:56:55.520142Z] IP=127.0.0.1 USER=sawantnidhi677@gmail.com ROLE=faculty ACTION=OTP_DISPATCHED STATUS=SUCCESS DETAILS=OTP dispatched for sawantnidhi677@gmail.com. Email Sent: True, SMS Sent: False
+[2026-10-23T12:57:27.760252Z] IP=127.0.0.1 USER=testprof@college.edu ROLE=faculty ACTION=SELF_REGISTRATION_COMPLETED STATUS=SUCCESS DETAILS=New registration completed for Test Professor (IT). Direct password login enabled.
+[2026-10-23T12:57:27.895839Z] IP=127.0.0.1 USER=testprof@college.edu ROLE=faculty ACTION=DIRECT_LOGIN_SUCCESS STATUS=SUCCESS DETAILS=Direct password login for faculty (testprof@college.edu) - OTP bypassed
+[2026-10-23T12:58:07.318323Z] IP=127.0.0.1 USER=sawantnidhi677@gmail.com ROLE=faculty ACTION=LOGIN_SUCCESS STATUS=SUCCESS DETAILS=Successful 2FA login for role: faculty

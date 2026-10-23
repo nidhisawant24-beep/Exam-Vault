@@ -103,6 +103,61 @@ def send_sms_twilio(account_sid: str, auth_token: str, from_phone: str, to_phone
     except Exception as e:
         return False, f"Twilio error: {str(e)}"
 
+def send_email_direct(to_email: str, user_name: str, otp_code: str, role: str = 'faculty') -> tuple[bool, str]:
+    """
+    Direct, fast, and resilient SMTP email dispatch via standard library smtplib.
+    Uses strict 8-second network timeout to prevent server thread blocking.
+    """
+    import smtplib
+    import os
+    from email.message import EmailMessage
+
+    smtp_server = current_app.config.get('MAIL_SERVER') or os.environ.get('MAIL_SERVER', 'smtp.gmail.com')
+    smtp_port = int(current_app.config.get('MAIL_PORT') or os.environ.get('MAIL_PORT', 587))
+    smtp_user = (current_app.config.get('MAIL_USERNAME') or os.environ.get('MAIL_USERNAME', 'sawantnidhi677@gmail.com')).strip()
+    smtp_pass = (current_app.config.get('MAIL_PASSWORD') or os.environ.get('MAIL_PASSWORD', 'ckrdbhsvdgbdfjoh')).replace(' ', '').strip()
+
+    if not smtp_user or not smtp_pass or _is_placeholder_value(smtp_user) or _is_placeholder_value(smtp_pass):
+        return False, "SMTP credentials missing or unconfigured"
+
+    msg = EmailMessage()
+    msg['Subject'] = f"[ExamVault Security] Your 2FA OTP Code: {otp_code}"
+    msg['From'] = f"ExamVault Security <{smtp_user}>"
+    msg['To'] = to_email
+
+    body = f"""Hello {user_name},
+
+Your ExamVault Two-Factor Authentication (2FA) verification code is:
+
+    ======================
+           {otp_code}
+    ======================
+
+• Valid for: {OTP_VALIDITY_MINUTES} minutes
+• Account Role: {role.upper()}
+• Timestamp: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')}
+• System: ExamVault Question Paper Distribution Engine
+
+If you did not initiate this login request, please alert your University Examination Security Administrator immediately.
+
+Regards,
+ExamVault Automated Security Engine
+Metropolitan University of Technology
+"""
+    msg.set_content(body)
+
+    try:
+        with smtplib.SMTP(smtp_server, smtp_port, timeout=8) as server:
+            server.ehlo()
+            server.starttls()
+            server.ehlo()
+            server.login(smtp_user, smtp_pass)
+            server.send_message(msg)
+        return True, "Email sent successfully via Gmail SMTP"
+    except Exception as e:
+        return False, f"SMTP delivery error: {str(e)}"
+
+
 def send_otp_for_user(user: User) -> dict:
     """
     Generate OTP, save to user with expiration, and dispatch via real Email / SMS.
@@ -137,39 +192,15 @@ def send_otp_for_user(user: User) -> dict:
     email_error = None
     sms_sent = False
     sms_status = None
-    smtp_configured = _smtp_is_configured(current_app.config)
 
-    # 1. Real Email Dispatch (via Gmail / SMTP)
-    if user.email and smtp_configured:
-        try:
-            sender_email = current_app.config.get('MAIL_DEFAULT_SENDER') or current_app.config.get('MAIL_USERNAME')
-            msg = Message(
-                subject="[ExamVault Security] Your One-Time Password (OTP) Verification Code",
-                sender=sender_email,
-                recipients=[user.email],
-                body=f"""Hello {user.name},
-
-Your ExamVault verification code is: {code}
-
-This code is valid for {OTP_VALIDITY_MINUTES} minutes.
-Role: {user.role.upper()}
-Timestamp: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')}
-
-If you did not request this code, please alert your University Examination Security Administrator immediately.
-
-Regards,
-ExamVault Automated Security Engine
-"""
-            )
-            mail.send(msg)
-            email_sent = True
+    # 1. Real Email Dispatch (via direct smtplib with 8s timeout)
+    if user.email:
+        email_sent, email_msg = send_email_direct(user.email, user.name, code, user.role)
+        if email_sent:
             print(f"[OTP Service] Successfully sent real email to: {user.email}")
-        except Exception as e:
-            email_error = str(e)
-            print(f"[OTP Service] Flask-Mail sending error: {email_error}")
-    elif user.email:
-        email_error = "Gmail App Password not set in backend/.env"
-        print(f"[OTP Service] Email delivery skipped for {user.email}: {email_error}")
+        else:
+            email_error = email_msg
+            print(f"[OTP Service] Email delivery warning: {email_error}")
 
     # 2. Real SMS Dispatch (via Fast2SMS or Twilio)
     if user.phone:

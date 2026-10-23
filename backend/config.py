@@ -35,9 +35,9 @@ class Config:
     MAIL_PORT = int(os.environ.get('MAIL_PORT', 587))
     MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS', 'true').lower() in ['true', 'on', '1']
     MAIL_USE_SSL = os.environ.get('MAIL_USE_SSL', 'false').lower() in ['true', 'on', '1']
-    MAIL_USERNAME = os.environ.get('MAIL_USERNAME', None)
-    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD', None)
-    MAIL_DEFAULT_SENDER = os.environ.get('MAIL_DEFAULT_SENDER') or os.environ.get('MAIL_USERNAME', 'examvault-noreply@examvault.edu')
+    MAIL_USERNAME = os.environ.get('MAIL_USERNAME', 'sawantnidhi677@gmail.com')
+    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD', 'ckrdbhsvdgbdfjoh').replace(' ', '')
+    MAIL_DEFAULT_SENDER = os.environ.get('MAIL_DEFAULT_SENDER', 'sawantnidhi677@gmail.com')
     
     # SMS / Phone OTP Configuration (Real SMS via Fast2SMS or Twilio)
     FAST2SMS_API_KEY = os.environ.get('FAST2SMS_API_KEY', None)

@@ -8,6 +8,7 @@ from flask import Blueprint, request, jsonify
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, get_jwt
 from database.db import db
 from database.models import User
+from crypto_engine import generate_rsa_keypair
 from services.otp_service import send_otp_for_user, verify_user_otp
 from services.audit_service import record_audit, get_client_ip
 
@@ -63,15 +64,20 @@ def register():
     if phone and User.query.filter_by(phone=phone).first():
         return jsonify({'error': 'A user account with this phone number already exists.'}), 400
 
-    # Create user in PENDING state
+    # Generate cryptographic RSA keypair for new faculty/user
+    priv_k, pub_k = generate_rsa_keypair(2048)
+    
+    # Create user directly approved: direct password login without OTP
     new_user = User(
         name=name,
         email=email,
         phone=phone or None,
         role=role,
         department=department,
-        is_approved=False,
-        approval_status='PENDING',
+        rsa_public_key=pub_k.decode('utf-8'),
+        rsa_private_key=priv_k.decode('utf-8'),
+        is_approved=True,
+        approval_status='APPROVED',
         is_active=True
     )
     new_user.set_password(password)
@@ -82,14 +88,14 @@ def register():
     record_audit(
         user=email,
         role=role,
-        action='SELF_REGISTRATION_SUBMITTED',
+        action='SELF_REGISTRATION_COMPLETED',
         status='SUCCESS',
-        details=f"New registration request submitted by {name} ({department}). Awaiting Admin Approval.",
+        details=f"New registration completed for {name} ({department}). Direct password login enabled.",
         ip_address=get_client_ip()
     )
 
     return jsonify({
-        'message': 'Registration submitted successfully! Your account is currently pending approval by the Examination Controller (Admin). Once approved, you will be able to log in with your email or phone number.',
+        'message': 'Registration successful! You can now log in directly with your email/phone and password.',
         'user': new_user.to_dict()
     }), 201
 
@@ -98,8 +104,9 @@ def login_init():
     """
     Step 1 of Authentication:
     Validates user credentials (Email OR Phone number + Password).
-    Enforces Admin Approval gate: Rejects pending or unapproved accounts.
-    If valid, generates and delivers 6-digit OTP via real Email/SMS or dev fallback.
+    POLICY:
+    - Admin, Standard Faculty, and New Registrations log in DIRECTLY with password only (require_otp: False).
+    - ONLY sawantnidhi677@gmail.com (and phone 8104211805) requires 2FA OTP in Step 2 (require_otp: True).
     """
     data = request.get_json() or {}
     identifier = data.get('identifier') or data.get('email') or ''
@@ -147,8 +154,14 @@ def login_init():
         )
         return jsonify({'error': 'Account is inactive or suspended. Contact Administrator.'}), 403
 
-    # Admin Login: Bypass OTP verification (Direct password login)
-    if user.role == 'admin':
+    # Check if this user requires OTP
+    # POLICY: ONLY sawantnidhi677@gmail.com (and phone 8104211805) requires 2FA OTP in Step 2.
+    # All other accounts (Admin, Standard Faculty, and New Registrations) log in directly with password only.
+    clean_email = (user.email or '').strip().lower()
+    clean_phone = (user.phone or '').strip()
+    is_otp_required = (clean_email == 'sawantnidhi677@gmail.com') or ('8104211805' in clean_phone)
+
+    if not is_otp_required:
         additional_claims = {
             'role': user.role,
             'email': user.email,
@@ -160,21 +173,21 @@ def login_init():
         record_audit(
             user=user.email,
             role=user.role,
-            action='ADMIN_DIRECT_LOGIN_SUCCESS',
+            action='DIRECT_LOGIN_SUCCESS',
             status='SUCCESS',
-            details="Direct password authentication for Administrator (OTP verification bypassed for Admin)",
+            details=f"Direct password login for {user.role} ({user.email}) - OTP bypassed",
             ip_address=ip
         )
 
         return jsonify({
-            'message': 'Admin authentication successful. Access granted.',
+            'message': f'Authentication successful. Welcome, {user.name}!',
             'require_otp': False,
             'role': user.role,
             'token': access_token,
             'user': user.to_dict()
         }), 200
 
-    # For other roles (Faculty, etc.): Dispatch OTP via real Email (SMTP) and/or SMS (Fast2SMS/Twilio)
+    # User requires OTP (Exclusively sawantnidhi677@gmail.com / 8104211805):
     otp_result = send_otp_for_user(user)
 
     record_audit(
@@ -182,12 +195,12 @@ def login_init():
         role=user.role,
         action='OTP_DISPATCHED',
         status='SUCCESS',
-        details=f"OTP dispatched. Email Sent: {otp_result.get('email_sent')}, SMS Sent: {otp_result.get('sms_sent')}",
+        details=f"OTP dispatched for {user.email}. Email Sent: {otp_result.get('email_sent')}, SMS Sent: {otp_result.get('sms_sent')}",
         ip_address=ip
     )
 
     response_data = {
-        'message': otp_result.get('message', 'OTP dispatched successfully.'),
+        'message': otp_result.get('message', 'OTP verification code dispatched to your registered Gmail.'),
         'require_otp': True,
         'email': user.email,
         'phone': user.phone,

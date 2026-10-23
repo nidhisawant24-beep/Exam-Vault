@@ -108,27 +108,27 @@ const PROFILES = [
     id: 'faculty',
     name: 'Dr. Alan Turing',
     role: 'Chief Examiner (Faculty)',
-    desc: 'Subject question paper access, time-locked decryption lab',
+    desc: 'Subject question paper access, direct cryptographic decryptor',
     email: 'faculty@examvault.edu',
     password: 'Faculty@123',
     icon: GraduationCap,
-    badgeText: '2FA OTP Required',
+    badgeText: 'Direct Login (No OTP)',
+    badgeColor: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20',
+    cardBorder: 'hover:border-emerald-500/50 dark:hover:border-emerald-500/40',
+    avatarBg: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400',
+  },
+  {
+    id: 'nidhi',
+    name: 'Prof. Nidhi Sawant',
+    role: 'Senior Faculty Examiner',
+    desc: 'Computer Engineering Dept, 2FA OTP verification via Gmail',
+    email: 'sawantnidhi677@gmail.com',
+    password: '12345678',
+    icon: Shield,
+    badgeText: '2FA OTP to Gmail',
     badgeColor: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20',
     cardBorder: 'hover:border-blue-500/50 dark:hover:border-blue-500/40',
     avatarBg: 'bg-blue-500/10 text-blue-600 dark:text-blue-400',
-  },
-  {
-    id: 'shannon',
-    name: 'Prof. Claude Shannon',
-    role: 'Senior Examiner (Faculty)',
-    desc: 'Information Theory Dept, verification audit & signatures',
-    email: 'shannon@examvault.edu',
-    password: 'Faculty@123',
-    icon: Shield,
-    badgeText: '2FA OTP Required',
-    badgeColor: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20',
-    cardBorder: 'hover:border-indigo-500/50 dark:hover:border-indigo-500/40',
-    avatarBg: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400',
   },
 ];
 
@@ -338,13 +338,18 @@ const LoginPage = () => {
     setLoading(true);
     try {
       const data = await loginInit(identifier, password);
-      // For Admin: OTP verification is completely bypassed!
-      if (data.require_otp === false || data.role === 'admin') {
-        navigate('/admin/dashboard');
+      // Direct login (No OTP required for Admin, Standard Faculty, or New Registrations)
+      if (data.require_otp === false) {
+        if (data.role === 'admin') {
+          navigate('/admin/dashboard');
+        } else {
+          navigate('/faculty/dashboard');
+        }
         return;
       }
+      // OTP Required exclusively for sawantnidhi677@gmail.com
       setRole(data.role);
-      setLoginMessage(data.message || 'Verification code dispatched to your registered Gmail and mobile phone.');
+      setLoginMessage(data.message || 'Verification code dispatched to your registered Gmail.');
       setResendCooldown(30);
       setStep(2);
     } catch (err) {
@@ -419,6 +424,7 @@ const LoginPage = () => {
   };
 
   const isAdminIdent = identifier.toLowerCase().includes('admin');
+  const isNidhiIdent = identifier.toLowerCase().includes('sawantnidhi677') || identifier.includes('8104211805');
 
   return (
     <div className="min-h-screen w-full bg-[#F8FAFC] dark:bg-[#080D1A] text-slate-900 dark:text-slate-100 relative overflow-hidden font-sans selection:bg-blue-600/20">
@@ -724,7 +730,7 @@ const LoginPage = () => {
                       <RefreshCw className="w-4 h-4 animate-spin" />
                     ) : (
                       <>
-                        <span>{isAdminIdent ? 'Sign In to Admin Vault' : 'Secure Login (Proceed to 2FA)'}</span>
+                        <span>{isAdminIdent ? 'Sign In to Admin Vault' : isNidhiIdent ? 'Verify Password & Request OTP' : 'Direct Sign In (No OTP)'}</span>
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </>
                     )}

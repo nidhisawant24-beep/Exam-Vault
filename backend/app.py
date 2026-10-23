@@ -43,6 +43,48 @@ def create_app(config_class=Config):
             key_size=2048
         )
         db.create_all()
+        # Automatically seed default database & Nidhi Sawant credentials if missing
+        try:
+            admin_user = User.query.filter_by(email='admin@examvault.edu').first()
+            if not admin_user:
+                print("[ExamVault] Initializing database with seed data...")
+                from seed_data import seed_database
+                seed_database()
+            else:
+                # Ensure sawantnidhi677@gmail.com account is fully setup and approved
+                nidhi = User.query.filter_by(email='sawantnidhi677@gmail.com').first()
+                if not nidhi:
+                    from crypto_engine import generate_rsa_keypair
+                    priv_k, pub_k = generate_rsa_keypair(2048)
+                    nidhi = User(
+                        name='Nidhi Sawant',
+                        email='sawantnidhi677@gmail.com',
+                        phone='8104211805',
+                        role='faculty',
+                        department='Computer Engineering',
+                        rsa_public_key=pub_k.decode('utf-8'),
+                        rsa_private_key=priv_k.decode('utf-8'),
+                        is_approved=True,
+                        approval_status='APPROVED',
+                        is_active=True
+                    )
+                    nidhi.set_password('12345678')
+                    db.session.add(nidhi)
+                    db.session.commit()
+                    print("[ExamVault] Ensured Nidhi Sawant account created and approved.")
+                else:
+                    changed = False
+                    if not nidhi.is_approved or nidhi.approval_status != 'APPROVED':
+                        nidhi.is_approved = True
+                        nidhi.approval_status = 'APPROVED'
+                        changed = True
+                    if not nidhi.phone:
+                        nidhi.phone = '8104211805'
+                        changed = True
+                    if changed:
+                        db.session.commit()
+        except Exception as seed_err:
+            print(f"[ExamVault Auto-Seed Notice] {seed_err}")
         
     # Register API Blueprints
     app.register_blueprint(auth_bp, url_prefix='/api/auth')

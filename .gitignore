@@ -1,0 +1,36 @@
+# Local credentials and environment configuration
+.env
+.env.*
+!.env.example
+backend/.env
+backend/.env.*
+!backend/.env.example
+
+# Local Python environments and caches
+venv/
+.venv/
+**/venv/
+**/.venv/
+__pycache__/
+*.py[cod]
+
+# Runtime data, keys, and confidential exam files
+backend/keys/*
+!backend/keys/.gitkeep
+backend/database/*.db
+backend/encrypted_files/*
+!backend/encrypted_files/.gitkeep
+backend/uploads/*
+!backend/uploads/.gitkeep
+backend/logs/*
+!backend/logs/.gitkeep
+
+# Frontend dependencies and build output
+frontend/node_modules/
+frontend/dist/
+
+# Editor/OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
